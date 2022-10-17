@@ -1,0 +1,21 @@
+.container {
+  background-color: black;
+  height: 8vh;
+  padding: 0 100px;
+
+}
+
+.nav_links {
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav_links a {
+  background-color: white;
+  border-radius: 4px;
+  padding: 5px;
+}
