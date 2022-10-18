@@ -1,12 +1,17 @@
 import Head from "next/head";
 import Image from "next/future/image";
+import { useEffect, useState } from "react";
 import votingImage from "../asset/Voting.jpg";
 import styles from "../styles/Home.module.css";
-
 import Search from "../components/Search";
-import Cards from '../components/Cards';
+import Cards from "../components/Cards";
 
-export default function Home() {
+const Home = () => {
+  const [word, setWord] = useState("");
+
+  useEffect(() => {
+    console.log(word);
+  }, [word]);
   return (
     <>
       <div className={styles.main}>
@@ -20,9 +25,11 @@ export default function Home() {
           />
         </div>
         <div className={styles.container}></div>
-        <Search />
+        <Search setWord={setWord} />
       </div>
-      <Cards />
+      <Cards word={word} />
     </>
   );
-}
+};
+
+export default Home;

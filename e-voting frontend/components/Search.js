@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import styles from "../styles//Search.module.css";
 
-const Search = () => {
-  const [word, setWord] = useState("");
+const Search = ({ setWord }) => {
+  const inputElement = useRef(null);
 
   useEffect(() => {
-    console.log(word);
-  }, [word]);
+    if (inputElement.current) inputElement.current.focus();
+  });
   return (
     <>
       <input
+        autoFocus
         className={styles.search}
         type="text"
         placeholder="search polls"
         onChange={(event) => setWord(event.target.value)}
-      ></input>
+        ref={inputElement}
+      />
     </>
   );
 };
