@@ -15,13 +15,10 @@ const Home = () => {
   return (
     <>
       <div className={styles.main}>
-        <div className={styles.container}>
+        <div>
           <Image
             src={votingImage}
             alt="E-Voting"
-            width="0"
-            height="0"
-            style={{ width: "500px", height: "auto" }}
           />
         </div>
         <div className={styles.container}></div>
