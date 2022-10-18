@@ -12,6 +12,7 @@ const Search = () => {
       <input
         className={styles.search}
         type="text"
+        placeholder="search polls"
         onChange={(event) => setWord(event.target.value)}
       ></input>
     </>

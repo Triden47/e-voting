@@ -1,0 +1,12 @@
+.grid_container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 50px;
+  gap: 50px 50px;
+}
+
+.grid_item {
+  background-color: red;
+  text-align: center;
+  /* padding: 10px; */
+}
