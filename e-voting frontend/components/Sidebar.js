@@ -25,19 +25,19 @@ import {
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText, useEffect, useState } from "react";
-import Content from "./Content";
+import Content from "./Content/Content";
 import Title from "./Title";
 
 const LinkItems = [
-  { name: "Title", icon: FiHome },
+  { name: "Create", icon: FiHome },
   { name: "Add Candidate", icon: FiTrendingUp },
+  { name: "Candidate List", icon: FiStar },
   { name: "Change State", icon: FiCompass },
-  // { name: "Favourites", icon: FiStar },
   // { name: "Settings", icon: FiSettings },
 ];
 
 const SimpleSidebar = () => {
-  const [item, setItem] = useState("");
+  const [item, setItem] = useState("Create");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -69,7 +69,6 @@ const SimpleSidebar = () => {
 };
 
 const SidebarContent = ({ onClose, item, setItem, ...rest }) => {
-
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}
@@ -85,8 +84,7 @@ const SidebarContent = ({ onClose, item, setItem, ...rest }) => {
           key={index}
           icon={link.icon}
           onClick={() => setItem(link.name)}
-          bg={link.name === item && "black"}
-          color={link.name === item && "white"}
+          border={link.name === item ? "solid 2px" : "white solid 2px"}
         >
           {link.name}
         </NavItem>
