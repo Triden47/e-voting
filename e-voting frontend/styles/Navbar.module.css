@@ -2,7 +2,10 @@
   background-color: black;
   height: 8vh;
   padding: 0 100px;
-
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .nav_links {
