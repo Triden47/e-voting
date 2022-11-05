@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 
-const Add_Candidate = () => {
+const Add_Candidate = ({ setData }) => {
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -16,6 +16,13 @@ const Add_Candidate = () => {
       qualification: "",
     },
     onSubmit: (values) => {
+      setData((prevState) => ({
+        ...prevState,
+        candidates: [
+          ...(prevState.candidates ? prevState.candidates : []),
+          values,
+        ],
+      }));
       alert(JSON.stringify(values, null, 2));
     },
   });

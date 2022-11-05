@@ -8,7 +8,7 @@ import {
 } from "formik";
 import { Button, Input } from "@chakra-ui/react";
 
-import SimpleSidebar from "../components/Sidebar";
+import SimpleSidebar from "../components/Create_Page/Sidebar";
 
 const initialValues = {
   title: "",

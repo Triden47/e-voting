@@ -20,7 +20,7 @@ const Cards = ({ word }) => {
               {poll.time_left}
             </Text>
             <Button>
-              <Link href="/[_id]" as={`/${poll._id}`}>
+              <Link href="/[pollPageid]" as={`/${poll._id}`}>
                 Cast your vote
               </Link>
             </Button>
