@@ -26,29 +26,31 @@ const Detail = ({ data, setData }) => {
   return (
     <>
       <Heading>Poll Details</Heading>
-      <form onSubmit={formik.handleSubmit}>
-        <FormControl isRequired>
-          <FormLabel>Title</FormLabel>
-          <Input
-            id="title"
-            name="title"
-            placeholder="Title"
-            onChange={formik.handleChange}
-            value={formik.values.title}
-          />
+      <fieldset disabled={data.state === "inactive" ? "" : "disabled"}>
+        <form onSubmit={formik.handleSubmit} disabled>
+          <FormControl isRequired>
+            <FormLabel>Title</FormLabel>
+            <Input
+              id="title"
+              name="title"
+              placeholder="Title"
+              onChange={formik.handleChange}
+              value={formik.values.title}
+            />
 
-          <FormLabel>Description</FormLabel>
-          <Textarea
-            id="description"
-            name="description"
-            placeholder="Description"
-            onChange={formik.handleChange}
-            value={formik.values.description}
-          />
+            <FormLabel>Description</FormLabel>
+            <Textarea
+              id="description"
+              name="description"
+              placeholder="Description"
+              onChange={formik.handleChange}
+              value={formik.values.description}
+            />
 
-          <Button type="submit">Submit</Button>
-        </FormControl>
-      </form>
+            <Button type="submit">Submit</Button>
+          </FormControl>
+        </form>
+      </fieldset>
     </>
   );
 };

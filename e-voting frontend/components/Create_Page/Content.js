@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
 import Detail from "./Detail";
-import Add_Candidate from "./Add_Candidate";
-import Change_State from "./Change_State";
+import AddCandidate from "./AddCandidate";
+import CandidateList from "./CandidateList";
+import ChangeState from "./ChangeState";
 
 const Content = ({ item }) => {
   const [data, setData] = useState({
@@ -18,10 +19,11 @@ const Content = ({ item }) => {
   return (
     <>
       {item === "Create" && <Detail data={data} setData={setData} />}
-      {item === "Add Candidate" && <Add_Candidate setData={setData} />}
-      {item === "Change State" && (
-        <Change_State data={data} setData={setData} />
+      {item === "Add Candidate" && (
+        <AddCandidate data={data} setData={setData} />
       )}
+      {item === "Candidate List" && <CandidateList data={data} />}
+      {item === "Change State" && <ChangeState data={data} setData={setData} />}
     </>
   );
 };
