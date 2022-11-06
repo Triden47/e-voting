@@ -1,9 +1,13 @@
 import { Button } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 //Components
 import { changePollState } from "../../api/api";
 
 const ChangeState = ({ data, setData }) => {
+  useEffect(() => {
+    console.log(data);
+  }, []);
   return (
     <>
       {data.state === "inactive" && (
@@ -20,7 +24,7 @@ const ChangeState = ({ data, setData }) => {
           <Button
             type="button"
             onClick={async () => {
-              await changePollState({ id: data.id, state: "active" });
+              await changePollState({ id: data._id, state: "active" });
               setData((prevState) => ({
                 ...prevState,
                 state: "active",
@@ -45,7 +49,7 @@ const ChangeState = ({ data, setData }) => {
           <Button
             type="button"
             onClick={async () => {
-              await changePollState({ id: data.id, state: "ended" });
+              await changePollState({ id: data._id, state: "ended" });
               setData((prevState) => ({
                 ...prevState,
                 state: "ended",

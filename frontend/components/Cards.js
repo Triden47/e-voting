@@ -1,14 +1,16 @@
 import Link from "next/link";
 import styles from "../styles/Cards.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import { Heading, Text, Button } from "@chakra-ui/react";
 
 //Components
 import { getPolls } from "../api/api";
+import { AdminContext } from "./context/AdminProvider";
 
 const Cards = ({ word }) => {
   const [polls, setPolls] = useState([]);
+  const { admin } = useContext(AdminContext);
   useEffect(() => {
     const someFunction = async () => {
       setPolls(await getPolls());
@@ -18,7 +20,8 @@ const Cards = ({ word }) => {
 
   return (
     <div className={styles.grid_container}>
-      {polls.filter((poll) => poll.title.toLowerCase().includes(word.toLowerCase()))
+      {polls
+        .filter((poll) => poll.title.toLowerCase().includes(word.toLowerCase()))
         .map((poll) => (
           <div key={poll._id} className={styles.grid_item}>
             <Heading size="md" m={2}>
@@ -29,9 +32,15 @@ const Cards = ({ word }) => {
               {poll.description}
             </Text>
             <Button>
-              <Link href="/[pollPageid]" as={`/${poll._id}`}>
-                Cast your vote
-              </Link>
+              {admin ? (
+                <Link href={{ pathname: "/create", query: { id: poll._id } }}>
+                  Details
+                </Link>
+              ) : (
+                <Link href="/[pollPageid]" as={`/${poll._id}`}>
+                  Cast your vote
+                </Link>
+              )}
             </Button>
           </div>
         ))}

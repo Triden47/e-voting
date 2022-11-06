@@ -12,7 +12,7 @@ export const createPoll = async (data) => {
 };
 
 export const addCandidate = async (data) => {
-  console.log(data);
+  // console.log(data);
   try {
     return await axios.post(`${url}/addCandidate`, data);
   } catch (error) {
@@ -21,7 +21,7 @@ export const addCandidate = async (data) => {
 };
 
 export const changePollState = async (data) => {
-  // console.log(data);
+  console.log(data);
   try {
     await axios.post(`${url}/changeState`, data);
   } catch (error) {
@@ -41,7 +41,7 @@ export const getPolls = async () => {
 export const getCandidates = async (data) => {
   try {
     const candidates = await axios.post(`${url}/getCandidates`, data);
-    console.log(candidates.data);
+    // console.log(candidates.data);
     return candidates.data;
   } catch (error) {
     console.log("Error while calling getCandidates api", error);
@@ -60,9 +60,19 @@ export const registerVoter = async (data) => {
 
   try {
     const response = await axios.post(`${url}/registerVoter`, data);
-    console.log(response);
+    // console.log(response);
     return response.data.eligible;
   } catch (error) {
     console.log("Error while calling registerVoter api", error);
   }
 };
+
+export const getPollById = async (data) => {
+  try {
+    const poll = await axios.post(`${url}/getPollById`, data);
+    // console.log(poll.data[0]);
+    return poll.data[0];
+  } catch (error) {
+    console.log("Error while calling getPollById api", error);
+  }
+}

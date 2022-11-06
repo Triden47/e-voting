@@ -21,7 +21,7 @@ const Detail = ({ data, setData }) => {
       const id = await createPoll(values);
       setData((prevState) => ({
         ...prevState,
-        id: id,
+        _id: id,
         title: values.title,
         description: values.description,
       }));

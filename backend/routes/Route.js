@@ -102,6 +102,15 @@ route.post("/registerVoter", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+route.post("/getPollById", async (req, res) => {
+  try {
+    const poll = await Poll.find({_id: req.body.id});
+    res.status(200).json(poll);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 // route.post('/createPoll', async (req, res) => {
 //     // console.log(req.body)
 //     try {

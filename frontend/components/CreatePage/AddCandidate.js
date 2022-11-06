@@ -7,6 +7,9 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 
+//Components
+import { addCandidate } from "../../api/api";
+
 const AddCandidate = ({ data, setData }) => {
   const formik = useFormik({
     initialValues: {
@@ -15,7 +18,8 @@ const AddCandidate = ({ data, setData }) => {
       age: "",
       qualification: "",
     },
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      await addCandidate({ ...values, poll_id: data._id });
       setData((prevState) => ({
         ...prevState,
         candidates: [
