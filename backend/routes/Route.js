@@ -2,6 +2,7 @@ import express, { response } from "express";
 
 import Poll from "../model/poll.js";
 import Candidate from "../model/candidate.js";
+import poll from "../model/poll.js";
 
 const route = express.Router();
 
@@ -24,6 +25,23 @@ route.post("/addCandidate", async (req, res) => {
   const newCandidate = new Candidate(req.body);
   try {
     await newCandidate.save();
+    res.status(200).json("Candidate saved successfully");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+route.post("/changeState", async (req, res) => {
+  console.log(req.body);
+  try {
+    await poll.findByIdAndUpdate(
+      req.body.id,
+      { state: req.body.state },
+      function (err, doc) {
+        if (err) console.log(err);
+        else console.log("Updated Poll : ", doc);
+      }
+    );
     res.status(200).json("Candidate saved successfully");
   } catch (error) {
     res.status(500).json(error);

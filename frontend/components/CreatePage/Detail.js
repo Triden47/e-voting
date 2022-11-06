@@ -18,8 +18,7 @@ const Detail = ({ data, setData }) => {
       description: data.description,
     },
     onSubmit: async (values) => {
-      const id = await createPoll(values)
-      console.log(id);
+      const id = await createPoll(values);
       setData((prevState) => ({
         ...prevState,
         id: id,

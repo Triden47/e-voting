@@ -16,8 +16,17 @@ export const addCandidate = async (data) => {
   try {
     const response = await axios.post(`${url}/addCandidate`, data);
     return response;
-    // return response.data.id;
   } catch (error) {
-    console.log("Error while calling createPoll api", error);
+    console.log("Error while calling addCandidate api", error);
+  }
+}
+
+export const changePollState = async (data) => {
+  console.log(data);
+  try {
+    const response = await axios.post(`${url}/changeState`, data);
+    return response;
+  } catch (error) {
+    console.log("Error while calling changePollState api", error);
   }
 }
