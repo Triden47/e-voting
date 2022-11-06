@@ -9,6 +9,7 @@ import { getCandidates } from "../../api/api";
 const Content = ({ item }) => {
   const router = useRouter();
   const [candidates, setCandidates] = useState([]);
+  const [eligible, setEligible] = useState(false);
   useEffect(() => {
     const someFunction = async () => {
       setCandidates(await getCandidates({ id: router.query.pollPageId }));
@@ -17,8 +18,16 @@ const Content = ({ item }) => {
   }, [router.isReady]);
   return (
     <>
-      {item === "Voter Registration" && <Registration />}
-      {item === "Voting Area" && <VotingArea candidates={candidates} />}
+      {item === "Voter Registration" && (
+        <Registration poll_id={router.query.pollPageId} setEligible={setEligible} />
+      )}
+      {item === "Voting Area" && (
+        <VotingArea
+          candidates={candidates}
+          eligible={eligible}
+          setEligible={setEligible}
+        />
+      )}
     </>
   );
 };

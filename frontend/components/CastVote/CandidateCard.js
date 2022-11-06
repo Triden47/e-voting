@@ -11,7 +11,14 @@ import {
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 
-const CandidateCard = ({ candidate }) => {
+//Components
+import { voteSubmit } from "../../api/api";
+
+const CandidateCard = ({ candidate, eligible, setEligible }) => {
+  const handleClick = async () => {
+    setEligible(false);
+    await voteSubmit({ id: candidate._id });
+  };
   return (
     <Center py={6}>
       <Box
@@ -72,8 +79,10 @@ const CandidateCard = ({ candidate }) => {
             _focus={{
               bg: "green.500",
             }}
+            disabled={!eligible}
+            onClick={handleClick}
           >
-            Vote me!!!
+            {eligible ? "Vote me!!!" : "Not eligible"}
           </Button>
         </Box>
       </Box>

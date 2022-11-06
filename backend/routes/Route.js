@@ -2,6 +2,7 @@ import express, { response } from "express";
 
 import Poll from "../model/poll.js";
 import Candidate from "../model/candidate.js";
+import Voter from "../model/voter.js";
 
 const route = express.Router();
 
@@ -61,6 +62,42 @@ route.post("/getCandidates", async (req, res) => {
     const candidates = await Candidate.find({ poll_id: req.body.id });
     console.log(candidates);
     res.status(200).json(candidates);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+route.post("/voteSubmit", async (req, res) => {
+  // console.log(req.body);
+  try {
+    await Candidate.findByIdAndUpdate(
+      req.body.id,
+      { $inc: { votes: 1 } },
+      function (err, doc) {
+        if (err) console.log(err);
+        else console.log("Updated Candidate Votes : ", doc);
+      }
+    );
+    res.status(200).json("Vote submitted successfully");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+route.post("/registerVoter", async (req, res) => {
+  let response = {};
+  try {
+    const exist = await Voter.findOne({
+      email: req.body.email,
+      poll_id: req.body.poll_id,
+    });
+    if (exist) {
+      res.status(200).json({ msg: "Voter already voted", eligible: false });
+      return;
+    }
+    const newVoter = new Voter(req.body);
+    await newVoter.save();
+    res.status(200).json({ msg: "Voter is eligible", eligible: true });
   } catch (error) {
     res.status(500).json(error);
   }

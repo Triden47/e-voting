@@ -47,3 +47,22 @@ export const getCandidates = async (data) => {
     console.log("Error while calling getCandidates api", error);
   }
 };
+
+export const voteSubmit = async (data) => {
+  try {
+    await axios.post(`${url}/voteSubmit`, data);
+  } catch (error) {
+    console.log("Error while calling voteSubmit api", error);
+  }
+};
+
+export const registerVoter = async (data) => {
+
+  try {
+    const response = await axios.post(`${url}/registerVoter`, data);
+    console.log(response);
+    return response.data.eligible;
+  } catch (error) {
+    console.log("Error while calling registerVoter api", error);
+  }
+};
