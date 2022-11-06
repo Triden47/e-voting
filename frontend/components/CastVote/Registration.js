@@ -36,7 +36,7 @@ const Registration = ({ poll_id, setEligible }) => {
               value={formik.values.name}
             />
 
-            <FormLabel>Organization</FormLabel>
+            <FormLabel>Email</FormLabel>
             <Input
               id="email"
               name="email"
