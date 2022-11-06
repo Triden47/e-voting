@@ -1,23 +1,32 @@
 import Link from "next/link";
 import styles from "../styles/Cards.module.css";
-import polls from "../data/pollsData.js";
+import { useState, useEffect } from "react";
 
-import { Heading, Text, Button, Icon } from "@chakra-ui/react";
-import { TimeIcon } from "@chakra-ui/icons";
+import { Heading, Text, Button } from "@chakra-ui/react";
+
+//Components
+import { getPolls } from "../api/api";
 
 const Cards = ({ word }) => {
+  const [polls, setPolls] = useState([]);
+  useEffect(() => {
+    const someFunction = async () => {
+      setPolls(await getPolls());
+    };
+    someFunction();
+  }, []);
+
   return (
     <div className={styles.grid_container}>
-      {polls
-        .filter((poll) => poll.title.toLowerCase().includes(word.toLowerCase()))
+      {polls.filter((poll) => poll.title.toLowerCase().includes(word.toLowerCase()))
         .map((poll) => (
-          <div className={styles.grid_item}>
+          <div key={poll._id} className={styles.grid_item}>
             <Heading size="md" m={2}>
               {poll.title}
             </Heading>
             <Text fontSize="xl" m={2}>
-              <Icon as={TimeIcon} h={4} m={2} />
-              {poll.time_left}
+              {/* <Icon as={TimeIcon} h={4} m={2} /> */}
+              {poll.description}
             </Text>
             <Button>
               <Link href="/[pollPageid]" as={`/${poll._id}`}>

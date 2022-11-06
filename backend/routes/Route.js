@@ -2,7 +2,6 @@ import express, { response } from "express";
 
 import Poll from "../model/poll.js";
 import Candidate from "../model/candidate.js";
-import poll from "../model/poll.js";
 
 const route = express.Router();
 
@@ -21,7 +20,7 @@ route.post("/createPoll", async (req, res) => {
 });
 
 route.post("/addCandidate", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const newCandidate = new Candidate(req.body);
   try {
     await newCandidate.save();
@@ -32,9 +31,9 @@ route.post("/addCandidate", async (req, res) => {
 });
 
 route.post("/changeState", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   try {
-    await poll.findByIdAndUpdate(
+    await Poll.findByIdAndUpdate(
       req.body.id,
       { state: req.body.state },
       function (err, doc) {
@@ -43,6 +42,25 @@ route.post("/changeState", async (req, res) => {
       }
     );
     res.status(200).json("Candidate saved successfully");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+route.get("/getPolls", async (req, res) => {
+  try {
+    const polls = await Poll.find({});
+    res.status(200).json(polls);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+route.post("/getCandidates", async (req, res) => {
+  try {
+    const candidates = await Candidate.find({ poll_id: req.body.id });
+    console.log(candidates);
+    res.status(200).json(candidates);
   } catch (error) {
     res.status(500).json(error);
   }

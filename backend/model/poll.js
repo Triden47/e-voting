@@ -9,9 +9,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  candidates: {
-    type: Array,
-  },
   state: {
     type: String,
     enum: ["inactive", "active", "ended"],

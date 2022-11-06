@@ -1,9 +1,11 @@
+//Components
+import { useEffect } from "react";
 import CandidateCard from "./CandidateCard";
 
-const CandidateList = ({ data }) => {
+const VotingArea = ({ candidates }) => {
   return (
     <>
-      {data.candidates.map((candidate) => (
+      {candidates.map((candidate) => (
         <div key={candidate._id}>
           <CandidateCard candidate={candidate} />
         </div>
@@ -12,4 +14,4 @@ const CandidateList = ({ data }) => {
   );
 };
 
-export default CandidateList;
+export default VotingArea;

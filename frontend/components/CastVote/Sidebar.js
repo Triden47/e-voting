@@ -25,7 +25,9 @@ import {
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText, useEffect, useState } from "react";
-// import Content from "./Content";
+
+//Components
+import Content from "./Content";
 // import Title from "../Title";
 
 const LinkItems = [
@@ -62,7 +64,7 @@ const SimpleSidebar = () => {
         </DrawerContent>
       </Drawer>
       <Box ml={{ base: 0, md: 60 }} p="4">
-        {/* <Content item={item} /> */}
+        <Content item={item} />
       </Box>
     </Box>
   );

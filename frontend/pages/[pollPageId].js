@@ -1,4 +1,4 @@
-import Sidebar from "../components/Cast_Vote/Sidebar";
+import Sidebar from "../components/CastVote/Sidebar";
 
 const PollPage = () => {
   return (
