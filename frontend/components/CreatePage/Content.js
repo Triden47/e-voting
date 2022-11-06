@@ -7,6 +7,7 @@ import ChangeState from "./ChangeState";
 
 const Content = ({ item }) => {
   const [data, setData] = useState({
+    id: "",
     title: "",
     description: "",
     candidates: [],

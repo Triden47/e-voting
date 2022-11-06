@@ -44,7 +44,7 @@ const ChangeState = ({ data, setData }) => {
             onClick={() =>
               setData((prevState) => ({
                 ...prevState,
-                state: "finish",
+                state: "ended",
               }))
             }
           >
@@ -53,7 +53,7 @@ const ChangeState = ({ data, setData }) => {
         </div>
       )}
 
-      {data.state === "finish" && (
+      {data.state === "ended" && (
         <div>
           <p>The poll has ended, results are available.</p>
         </div>

@@ -8,18 +8,25 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 
+//Components
+import { createPoll } from "../../api/api";
+
 const Detail = ({ data, setData }) => {
   const formik = useFormik({
     initialValues: {
       title: data.title,
       description: data.description,
     },
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      const id = await createPoll(values)
+      console.log(id);
       setData((prevState) => ({
         ...prevState,
+        id: id,
         title: values.title,
         description: values.description,
       }));
+
       alert(JSON.stringify(values, null, 2));
     },
   });

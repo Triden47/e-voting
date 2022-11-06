@@ -1,3 +1,4 @@
+import { ReactText, useEffect, useState } from "react";
 import {
   IconButton,
   Box,
@@ -24,7 +25,8 @@ import {
   FiMenu,
 } from "react-icons/fi";
 import { IconType } from "react-icons";
-import { ReactText, useEffect, useState } from "react";
+
+//Components
 import Content from "./Content";
 import Title from "../Title";
 
