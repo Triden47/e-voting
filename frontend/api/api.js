@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useToast } from "@chakra-ui/react";
 
 const url = "http://localhost:5000";
 
@@ -12,11 +13,13 @@ export const createPoll = async (data) => {
 };
 
 export const addCandidate = async (data) => {
-  // console.log(data);
+  console.log(data);
   try {
-    return await axios.post(`${url}/addCandidate`, data);
+    const response = await axios.post(`${url}/addCandidate`, data);
+    return response.data;
   } catch (error) {
     console.log("Error while calling addCandidate api", error);
+    return "error";
   }
 };
 
@@ -26,6 +29,7 @@ export const changePollState = async (data) => {
     await axios.post(`${url}/changeState`, data);
   } catch (error) {
     console.log("Error while calling changePollState api", error);
+    return "error";
   }
 };
 
@@ -57,7 +61,6 @@ export const voteSubmit = async (data) => {
 };
 
 export const registerVoter = async (data) => {
-
   try {
     const response = await axios.post(`${url}/registerVoter`, data);
     // console.log(response);
@@ -75,4 +78,4 @@ export const getPollById = async (data) => {
   } catch (error) {
     console.log("Error while calling getPollById api", error);
   }
-}
+};

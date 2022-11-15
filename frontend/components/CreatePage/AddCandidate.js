@@ -4,6 +4,7 @@ import {
   FormLabel,
   Heading,
   Input,
+  useToast,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 
@@ -11,6 +12,7 @@ import { useFormik } from "formik";
 import { addCandidate } from "../../api/api";
 
 const AddCandidate = ({ data, setData }) => {
+  const toast = useToast();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -19,15 +21,28 @@ const AddCandidate = ({ data, setData }) => {
       qualification: "",
     },
     onSubmit: async (values) => {
-      await addCandidate({ ...values, poll_id: data._id });
+      const response = await addCandidate({ ...values, poll_id: data._id });
+      if (response !== "error") {
+        toast({
+          title: "Candidate added successfully",
+          status: "success",
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: "Error while adding candidate",
+          status: "error",
+          isClosable: true,
+        });
+      }
+
       setData((prevState) => ({
         ...prevState,
         candidates: [
           ...(prevState.candidates ? prevState.candidates : []),
-          values,
+          response,
         ],
       }));
-      alert(JSON.stringify(values, null, 2));
     },
   });
   return (

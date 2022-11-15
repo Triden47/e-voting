@@ -30,9 +30,9 @@ const Content = ({ item }) => {
     someFunction();
   }, [router.isReady]);
 
-  useEffect(() => {
-    console.log(data)
-  }, [data])
+  // useEffect(() => {
+  //   console.log(data)
+  // }, [data])
   return (
     <>
       {item === "Create" && <Detail data={data} setData={setData} />}

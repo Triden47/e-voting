@@ -12,6 +12,7 @@ import {
 import { CheckIcon } from "@chakra-ui/icons";
 
 const CandidateCard = ({ candidate }) => {
+  console.log(candidate);
   return (
     <Center py={6}>
       <Box

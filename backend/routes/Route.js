@@ -24,8 +24,8 @@ route.post("/addCandidate", async (req, res) => {
   // console.log(req.body);
   const newCandidate = new Candidate(req.body);
   try {
-    await newCandidate.save();
-    res.status(200).json("Candidate saved successfully");
+    const response = await newCandidate.save();
+    res.status(200).json(response);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -34,14 +34,7 @@ route.post("/addCandidate", async (req, res) => {
 route.post("/changeState", async (req, res) => {
   // console.log(req.body);
   try {
-    await Poll.findByIdAndUpdate(
-      req.body.id,
-      { state: req.body.state },
-      function (err, doc) {
-        if (err) console.log(err);
-        else console.log("Updated Poll : ", doc);
-      }
-    );
+    await Poll.findByIdAndUpdate(req.body.id, { state: req.body.state });
     res.status(200).json("Candidate saved successfully");
   } catch (error) {
     res.status(500).json(error);
@@ -105,7 +98,7 @@ route.post("/registerVoter", async (req, res) => {
 
 route.post("/getPollById", async (req, res) => {
   try {
-    const poll = await Poll.find({_id: req.body.id});
+    const poll = await Poll.find({ _id: req.body.id });
     res.status(200).json(poll);
   } catch (error) {
     res.status(500).json(error);
