@@ -1,22 +1,14 @@
 import Link from "next/link";
 import styles from "../styles/Cards.module.css";
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 
 import { Heading, Text, Button } from "@chakra-ui/react";
 
 //Components
-import { getPolls } from "../api/api";
 import { AdminContext } from "./context/AdminProvider";
 
-const Cards = ({ word }) => {
-  const [polls, setPolls] = useState([]);
+const Cards = ({ word, polls }) => {
   const { admin } = useContext(AdminContext);
-  useEffect(() => {
-    const someFunction = async () => {
-      setPolls(await getPolls());
-    };
-    someFunction();
-  }, []);
 
   return (
     <div className={styles.grid_container}>
@@ -28,7 +20,6 @@ const Cards = ({ word }) => {
               {poll.title}
             </Heading>
             <Text fontSize="xl" m={2}>
-              {/* <Icon as={TimeIcon} h={4} m={2} /> */}
               {poll.description}
             </Text>
             <Button>
@@ -38,7 +29,7 @@ const Cards = ({ word }) => {
                 </Link>
               ) : (
                 <Link href="/[pollPageid]" as={`/${poll._id}`}>
-                  Cast your vote
+                  {poll.state === "active" ? "Cast your vote" : "See results"}
                 </Link>
               )}
             </Button>
