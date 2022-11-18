@@ -1,20 +1,12 @@
-import { ReactText, useEffect, useState } from "react";
+import { useState } from "react";
 import {
-  IconButton,
   Box,
-  CloseButton,
   Flex,
   Icon,
   useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
-  Text,
   useDisclosure,
-  BoxProps,
-  FlexProps,
-  useUpdateEffect,
-  background,
 } from "@chakra-ui/react";
 import {
   FiHome,

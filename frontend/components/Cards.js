@@ -24,12 +24,26 @@ const Cards = ({ word, polls }) => {
             </Text>
             <Button>
               {admin ? (
-                <Link href={{ pathname: "/create", query: { id: poll._id } }}>
+                <Link
+                  href={{
+                    pathname: "/create",
+                    query: { id: poll._id },
+                  }}
+                >
                   Details
                 </Link>
-              ) : (
+              ) : poll.state === "active" ? (
                 <Link href="/[pollPageid]" as={`/${poll._id}`}>
-                  {poll.state === "active" ? "Cast your vote" : "See results"}
+                  Cast your vote
+                </Link>
+              ) : (
+                <Link
+                  href={{
+                    pathname: "/results",
+                    query: { id: poll._id },
+                  }}
+                >
+                  Results
                 </Link>
               )}
             </Button>

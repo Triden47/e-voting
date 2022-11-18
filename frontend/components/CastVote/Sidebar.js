@@ -23,8 +23,7 @@ import {
   FiSettings,
   FiMenu,
 } from "react-icons/fi";
-import { IconType } from "react-icons";
-import { ReactText, useEffect, useState } from "react";
+import { useState } from "react";
 
 //Components
 import Content from "./Content";

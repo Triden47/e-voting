@@ -6,7 +6,7 @@ import { changePollState } from "../../api/api";
 const ChangeState = ({ data, setData }) => {
   const toast = useToast();
   const handleClick = async (state) => {
-    console.log(state);
+    // console.log(state);
     if ((await changePollState({ id: data._id, state: state })) !== "error") {
       toast({
         title: "State change successful",

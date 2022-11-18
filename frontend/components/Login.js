@@ -64,6 +64,7 @@ const SimpleCard = ({ onClose }) => {
 
                 <FormLabel>Password</FormLabel>
                 <Input
+                  type="password"
                   id="password"
                   name="password"
                   placeholder="Password"
