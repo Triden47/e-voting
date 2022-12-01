@@ -14,7 +14,7 @@ const Search = ({ setWord }) => {
     <InputGroup>
       <InputLeftElement
         pointerEvents="none"
-        children={<SearchIcon color="gray" />}
+        // children={<SearchIcon color="gray" />}
       />
       <Input
         focusBorderColor="black"
